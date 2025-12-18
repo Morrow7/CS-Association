@@ -75,7 +75,7 @@ export default function Home() {
                     centerVignette={true}
                     outerVignette={true}
                     smooth={true}
-                    glitchColors={['#eaefef99', '#6fce8dff', '#cb4672ff']}
+                    glitchColors={['#fcffff99', '#9ed2afff', '#e87da1ff']}
                 />
             </div>
 
