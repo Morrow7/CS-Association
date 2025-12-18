@@ -49,9 +49,9 @@
   z-index: 0;
 }
 
+/* Re-implementing corners using a different technique since ::before is used for scanline */
 .App-header p {
   z-index: 1;
-  border: 1px solid #00f3ff;
   background: rgba(0, 20, 40, 0.7);
   padding: 20px 40px;
   border-radius: 4px;
@@ -62,35 +62,74 @@
   text-shadow: 0 0 10px #00f3ff;
   letter-spacing: 2px;
   position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: default;
+  overflow: hidden;
+
+  /* Corner borders using gradients */
+  border: 1px solid rgba(0, 243, 255, 0.3);
+  background-image:
+    linear-gradient(to right, #00f3ff 2px, transparent 2px),
+    linear-gradient(to right, #00f3ff 2px, transparent 2px),
+    linear-gradient(to bottom, #00f3ff 2px, transparent 2px),
+    linear-gradient(to bottom, #00f3ff 2px, transparent 2px);
+  background-position:
+    0 0,
+    100% 100%,
+    0 0,
+    100% 100%;
+  background-repeat: no-repeat;
+  background-size: 10px 10px;
 }
 
-.App-header p:hover{
-  transform: translate(-5px, -5px);
-}
-
-.App-header p::before,
-.App-header p::after {
+/* The scanline effect using ::before */
+.App-header p::before {
   content: "";
   position: absolute;
-  width: 10px;
-  height: 10px;
-  border: 2px solid #00f3ff;
-  transition: all 0.3s ease;
+  top: 0;
+  left: -150%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      rgba(0, 243, 255, 0.4),
+      rgba(255, 255, 255, 0.2),
+      transparent);
+  transform: skewX(-20deg);
+  transition: 0.5s;
+  pointer-events: none;
+  z-index: 1;
 }
 
-.App-header p::before {
-  top: -2px;
-  left: -2px;
-  border-right: none;
-  border-bottom: none;
+.App-header p:hover::before {
+  left: 150%;
+  transition: 0.7s ease-in-out;
 }
 
+.App-header p:hover {
+  transform: scale(1.05) translateY(-5px);
+  background-color: rgba(0, 40, 80, 0.9);
+  /* Expand corners on hover */
+  background-size: 100% 100%;
+  box-shadow:
+    0 0 30px rgba(0, 243, 255, 0.4),
+    inset 0 0 30px rgba(0, 243, 255, 0.2),
+    0 0 10px rgba(0, 243, 255, 0.8);
+  border-color: #fff;
+  color: #fff;
+  text-shadow:
+    0 0 10px #00f3ff,
+    0 0 20px #00f3ff,
+    0 0 40px #00f3ff;
+}
+
+/* Clear old pseudo-elements if they exist */
 .App-header p::after {
-  bottom: -2px;
-  right: -2px;
-  border-left: none;
-  border-top: none;
+  content: none;
 }
+
+
 
 .App-link {
   color: #61dafb;

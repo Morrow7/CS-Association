@@ -1,15 +1,19 @@
 import React from 'react';
-import logo from '../src/images/logo.jpg';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Landing from './views/Landing';
+import Home from './views/Home';
+import Honor from './views/Honor';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>欢迎来到计算机科技协会的学习空间</p>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/Home" element={<Home />} />
+        <Route path="/honor" element={<Honor />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
