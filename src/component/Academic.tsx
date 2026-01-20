@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import Galaxy from '../views/Galaxy';
 
+const API_BASE = process.env.REACT_APP_API_BASE || '';
+
 type AcademicItem = {
     id: number;
     title: string;
@@ -15,7 +17,7 @@ export default function Academic() {
     useEffect(() => {
         const load = async () => {
             try {
-                const res = await fetch("/api/academic");
+                const res = await fetch(`${API_BASE}/api/academic`);
                 if (!res.ok) {
                     throw new Error("加载失败");
                 }
@@ -84,7 +86,7 @@ export default function Academic() {
                     <div
                         style={{
                             display: 'grid',
-                            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+                            gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
                             gap: '30px'
                         }}
                     >

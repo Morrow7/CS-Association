@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import Threads from './Threads';
 import logo from '../images/logo.jpg';
 
+const API_BASE = process.env.REACT_APP_API_BASE || '';
+
 export default function Login() {
     const navigate = useNavigate();
     const [username, setUsername] = useState("");
@@ -11,7 +13,7 @@ export default function Login() {
     const [error, setError] = useState("");
 
     const handleGithubLogin = () => {
-        window.location.href = "http://localhost:3001/api/github/login";
+        window.location.href = `${API_BASE}/api/github/login`;
     };
 
     const handleSubmit = async () => {
@@ -22,7 +24,7 @@ export default function Login() {
         setError("");
         setSubmitting(true);
         try {
-            const res = await fetch("/api/login", {
+            const res = await fetch(`${API_BASE}/api/login`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ username, password }),
@@ -36,7 +38,7 @@ export default function Login() {
             if (data.user) {
                 localStorage.setItem("cs_user", JSON.stringify(data.user));
             }
-            navigate("/home");
+            navigate("/home", { replace: true });
         } catch {
             setError("网络错误，请稍后重试");
             setSubmitting(false);

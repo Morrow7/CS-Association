@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import LightRays from '../component/LigntRays';
+
+const API_BASE = process.env.REACT_APP_API_BASE || '';
+
 type CommunityItem = {
   id: number;
   title: string;
@@ -41,7 +44,7 @@ export default function CommunityDetail() {
         return;
       }
       try {
-        const res = await fetch('/api/community');
+        const res = await fetch(`${API_BASE}/api/community`);
         if (!res.ok) {
           throw new Error('加载文章失败');
         }
@@ -66,7 +69,7 @@ export default function CommunityDetail() {
           }
         }
 
-        const cRes = await fetch(`/api/community/comments?postId=${postId}`);
+        const cRes = await fetch(`${API_BASE}/api/community/comments?postId=${postId}`);
         if (cRes.ok) {
           const cData = await cRes.json();
           if (cData.ok && Array.isArray(cData.comments)) {
@@ -104,7 +107,7 @@ export default function CommunityDetail() {
     setCommentSubmitting(true);
     setCommentError('');
     try {
-      const res = await fetch('/api/community/comments', {
+      const res = await fetch(`${API_BASE}/api/community/comments`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ postId, author: name, content: trimmed }),

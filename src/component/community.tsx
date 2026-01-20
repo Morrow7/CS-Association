@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Galaxy from "../views/Galaxy";
 
+const API_BASE = process.env.REACT_APP_API_BASE || '';
+
 type CommunityItem = {
     id: number;
     title: string;
@@ -18,7 +20,7 @@ export default function Community() {
     useEffect(() => {
         const load = async () => {
             try {
-                const res = await fetch('/api/community');
+                const res = await fetch(`${API_BASE}/api/community`);
                 if (!res.ok) {
                     throw new Error('加载失败');
                 }
@@ -88,7 +90,7 @@ export default function Community() {
                     <div
                         style={{
                             display: 'grid',
-                            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+                            gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
                             gap: '40px'
                         }}
                     >

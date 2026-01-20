@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Threads from './Threads';
 import logo from '../images/logo.jpg';
+
+const API_BASE = process.env.REACT_APP_API_BASE || '';
+
 export default function Register() {
     const navigate = useNavigate();
     const [username, setUsername] = useState("");
@@ -27,7 +30,7 @@ export default function Register() {
         setError("");
         setSubmitting(true);
         try {
-            const res = await fetch("/api/register", {
+            const res = await fetch(`${API_BASE}/api/register`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ username, password, department }),
@@ -36,7 +39,7 @@ export default function Register() {
             if (!res.ok || !data.ok) {
                 if (res.status === 409 && data.message === "该用户名已被注册") {
                     try {
-                        const loginRes = await fetch("/api/login", {
+                        const loginRes = await fetch(`${API_BASE}/api/login`, {
                             method: "POST",
                             headers: { "Content-Type": "application/json" },
                             body: JSON.stringify({ username, password }),
@@ -64,7 +67,7 @@ export default function Register() {
                 return;
             }
             try {
-                const loginRes = await fetch("/api/login", {
+                const loginRes = await fetch(`${API_BASE}/api/login`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ username, password }),
@@ -74,9 +77,9 @@ export default function Register() {
                     if (loginData.user) {
                         localStorage.setItem("cs_user", JSON.stringify(loginData.user));
                     }
-                    navigate("/home");
+                    navigate("/home", { replace: true });
                 } else {
-                    navigate("/login");
+                    navigate("/login", { replace: true });
                 }
             } catch {
                 navigate("/login");
