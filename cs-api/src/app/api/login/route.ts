@@ -4,7 +4,7 @@ import pool from "../../lib/db";
 
 export async function POST(request: Request) {
   try {
-    let body: unknown;
+    let body: any;
     try {
       body = await request.json();
     } catch {
