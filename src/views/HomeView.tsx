@@ -15,14 +15,14 @@ export default function Home() {
     const navigate = useNavigate();
     const cards = [
         {
-            title: 'Fronted',
+            title: 'Industrial Software Center',
             description: 'Construct the interactive aesthetics of the digital world..',
             icon: FaReact,
             color: '#000000',
             path: null
         },
         {
-            title: 'Backed',
+            title: 'Industrial Animation Center',
             description: 'The core engine for building the digital world.',
             icon: FaJava,
             color: '#ff0055',
@@ -36,11 +36,11 @@ export default function Home() {
             path: null
         },
         {
-            title: 'Big data',
-            description: 'Big data unlocks the future.',
+            title: 'Learning Community',
+            description: 'Technical Exchange Center',
             icon: SiTypescript,
             color: '#3178C6',
-            path: null
+            path: "/Community"
         },
         {
             title: 'competition',
@@ -54,7 +54,7 @@ export default function Home() {
             description: 'Precision, exploration, reflection.',
             icon: SiNextdotjs,
             color: '#00aaff',
-            path: null
+            path: '/Academic'
         },
     ];
 

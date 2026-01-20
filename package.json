@@ -7,9 +7,9 @@
     "@chakra-ui/react": "^3.30.0",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
+    "@react-spring/three": "^9.6.1",
     "@react-three/drei": "^9.70.0",
     "@react-three/fiber": "^8.13.7",
-    "@react-spring/three": "^9.6.1",
     "@react-three/postprocessing": "^2.16.2",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
@@ -28,7 +28,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.5.0",
-    "react-router-dom": "^7.11.0",
+    "react-markdown": "^10.1.0",
+    "react-router-dom": "^7.12.0",
     "react-scripts": "5.0.1",
     "three": "^0.150.1",
     "typescript": "^4.9.5",
@@ -46,6 +47,7 @@
       "react-app/jest"
     ]
   },
+  "proxy": "http://localhost:3001",
   "browserslist": {
     "production": [
       ">0.2%",

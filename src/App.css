@@ -5,7 +5,8 @@
 }
 
 .App-logo {
-  height: 35vmin;
+  height: 100px;
+  width: 100px;
   pointer-events: none;
   filter: drop-shadow(0 0 15px #06aeb7);
   animation: App-logo-float 3s ease-in-out infinite;
@@ -134,6 +135,20 @@
 .App-link {
   color: #61dafb;
   z-index: 1;
+}
+
+@keyframes community-study-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.community-study-icon-rotate {
+  animation: community-study-spin 6s linear infinite;
 }
 
 @keyframes App-logo-spin {
