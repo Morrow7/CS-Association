@@ -109,6 +109,23 @@ export default function Register() {
             >
                 <Threads amplitude={2} distance={0} enableMouseInteraction />
             </div>
+            {submitting && (
+                <div
+                    style={{
+                        position: 'absolute',
+                        inset: 0,
+                        zIndex: 2,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        background: 'rgba(0,0,0,0.4)',
+                        color: '#e5e7eb',
+                        fontSize: '16px',
+                    }}
+                >
+                    正在注册...
+                </div>
+            )}
             <div
                 style={{
                     zIndex: 1,
@@ -227,6 +244,7 @@ export default function Register() {
                 )}
                 <button
                     onClick={handleSubmit}
+                    disabled={submitting}
                     style={{
                         marginTop: '8px',
                         width: '60%',
@@ -246,6 +264,7 @@ export default function Register() {
                 <button
                     type="button"
                     onClick={goLogin}
+                    disabled={submitting}
                     style={{
                         marginTop: '4px',
                         width: '60%',

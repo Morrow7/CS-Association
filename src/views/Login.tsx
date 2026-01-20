@@ -64,6 +64,23 @@ export default function Login() {
             >
                 <Threads amplitude={2} distance={0} enableMouseInteraction />
             </div>
+            {submitting && (
+                <div
+                    style={{
+                        position: 'absolute',
+                        inset: 0,
+                        zIndex: 2,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        background: 'rgba(0,0,0,0.4)',
+                        color: '#e5e7eb',
+                        fontSize: '16px',
+                    }}
+                >
+                    正在登录...
+                </div>
+            )}
             <div
                 style={{
                     zIndex: 1,
@@ -149,6 +166,7 @@ export default function Login() {
                 <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'stretch', gap: '8px', marginTop: '8px' }}>
                     <button
                         onClick={handleSubmit}
+                        disabled={submitting}
                         style={{
                             marginTop: '8px',
                             width: '40%',
@@ -167,6 +185,7 @@ export default function Login() {
                     </button>
                     <button
                         onClick={handleGithubLogin}
+                        disabled={submitting}
                         style={{
                             marginTop: '8px',
                             width: '40%',
