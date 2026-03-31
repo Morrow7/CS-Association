@@ -6,7 +6,9 @@
     "dev": "next dev -p 3001",
     "build": "next build",
     "start": "next start -p 3001",
-    "lint": "eslint"
+    "lint": "eslint",
+    "db:init": "npx tsx scripts/init-db.ts",
+    "db:test": "npx tsx scripts/test-db.ts"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -24,6 +26,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.1.4",
     "tailwindcss": "^4",
+    "tsx": "^4.19.3",
     "typescript": "^5"
   }
 }
